@@ -2,11 +2,11 @@
 CALFFIRSTIN1="para_equalizer_x16_stereo:in_l"		#Edit as needed.
 CALFFIRSTIN2="para_equalizer_x16_stereo:in_r"		#Edit as needed.
 
-CALFLASTOUT1="para_equalizer_x16_stereo:out_l"	#Edit as needed.
-CALFLASTOUT2="para_equalizer_x16_stereo:out_r"	#Edit as needed.
+CALFLASTOUT1="para_equalizer_x16_stereo:out_l"		#Edit as needed.
+CALFLASTOUT2="para_equalizer_x16_stereo:out_r"		#Edit as needed.
 
-ACTUALOUTPUTHARDWARE1="K3:playback_FL"						#Edit as needed.
-ACTUALOUTPUTHARDWARE2="K3:playback_FR"						#Edit as needed.
+ACTUALOUTPUTHARDWARE1="K3:playback_FL"			#Edit as needed.
+ACTUALOUTPUTHARDWARE2="K3:playback_FR"			#Edit as needed.
 
 #These probably need not be changed, though feel free to anyway.
 NODENAME=EQ #Name of virtual device
