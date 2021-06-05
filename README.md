@@ -1,2 +1,23 @@
 # pipewire-eq-startup-script
-Simple-ish script which starts an equaliser under pipewire and connect real output device to it as well as a virtual device which relays applications' sound to the equaliser.
+Simple-ish script which starts an equaliser (or whatever sound effects are available) under pipewire and connect real output device(s) as well as a virtual device which relays applications' sound to it. Two variants have been uploaded with the only difference being whether it's setup for a calfjackhost plugin or one from lsp-plugins.
+
+While There are apps like qjackctl, Helvum or Catia which can be used instead I like the idea of being able to stick with Pavucontrol and not needing to use apps not provided by my distro's repository for this particular task.
+
+Depends on:
+- Jackd (or whatever part of JACK provides jack_connect and jack_lsp)
+- either calfjackhost or lsp-plugins (or whatever equivalent you use)
+- Pipewire
+
+## How to use
+- Create and save preset in calfjackhost or the LSP plugins you want to use
+- Edit the script to correspond with your setup. There should be 6 or 7 lines that need changing (see examples below)
+- Don't forget to edit the line where calfjackhost or the lsp-plugins EQ is actually run so they correspond to your preset(s)
+- Run the script when you want to use EQ (or make it run right after every login)
+- Use e.g. Pavucontrol to make apps output sound through $NODENAME as specified in the script (defaults to "EQ")
+
+## Examples
+![Calf](https://github.com/d-wid/pipewire-eq-startup-script/blob/main/calf.png)
+![lsp-plugins](https://github.com/d-wid/pipewire-eq-startup-script/blob/main/lsp.png)
+
+lsp-pluins has actually got a 32-band EQ as well if you need that many bands:
+    lsp-plugins-para-equalizer-x32-stereo
