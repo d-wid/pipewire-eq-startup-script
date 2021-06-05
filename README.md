@@ -9,10 +9,11 @@ Depends on:
 - Pipewire
 
 ## How to use
-- Create and save preset in calfjackhost or the LSP EQ plugin you want to use
+- Create and save a preset in calfjackhost or the LSP EQ plugin you want to use. Edit the values in the LSP plugin by double clicking on them, and in the Calf plugins by middle clicking the wheels.
 - Edit the script to correspond with your setup. There should be 6 or 7 lines that need changing (see examples below). To list JACK ports one can use:
- 
+
     pw-jack jack_lsp
+
 - Don't forget to edit the line where calfjackhost or the lsp-plugins EQ is actually run so they correspond to your preset(s)
 - Run the script when you want to use EQ (or make it run right after every login)
 - Use e.g. Pavucontrol to make apps output sound through $NODENAME as specified in the script (defaults to "EQ")
@@ -24,3 +25,5 @@ Depends on:
 p.s.lsp-pluins has actually got a 32-band EQ as well if you need that many bands:
 
     lsp-plugins-para-equalizer-x32-stereo
+
+Unfortunately you don't have nearly as much flexibility with the Calf Equaliser plugins, but it's possible to just stack a few of them together as shown in the example above.
