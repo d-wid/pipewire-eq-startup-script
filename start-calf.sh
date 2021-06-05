@@ -5,8 +5,8 @@ CALFFIRSTIN2="Calf Studio Gear:Equalizer 12 Band In #2"		#Edit as needed.
 CALFLASTOUT1="Calf Studio Gear:Equalizer 12 Band Out #1"	#Edit as needed.
 CALFLASTOUT2="Calf Studio Gear:Equalizer 12 Band Out #2"	#Edit as needed.
 
-ACTUALOUTPUTHARDWARE1="K3:playback_FL"						#Edit as needed.
-ACTUALOUTPUTHARDWARE2="K3:playback_FR"						#Edit as needed.
+ACTUALOUTPUTHARDWARE1="K3:playback_FL"				#Edit as needed.
+ACTUALOUTPUTHARDWARE2="K3:playback_FR"				#Edit as needed.
 
 #These probably need not be changed, though feel free to anyway.
 NODENAME=EQ #Name of virtual device
