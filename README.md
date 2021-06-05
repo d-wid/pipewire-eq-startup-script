@@ -22,7 +22,7 @@ Depends on:
 ![Calf](https://github.com/d-wid/pipewire-eq-startup-script/blob/main/calf.png)
 ![lsp-plugins](https://github.com/d-wid/pipewire-eq-startup-script/blob/main/lsp.png)
 
-p.s.lsp-pluins has actually got a 32-band EQ as well if you need that many bands:
+p.s. lsp-pluins has actually got a 32-band EQ as well if you need that many bands:
 
     lsp-plugins-para-equalizer-x32-stereo
 
