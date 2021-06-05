@@ -1,7 +1,7 @@
 # pipewire-eq-startup-script
-Simple-ish script which starts an equaliser (or whatever sound effects are available) under pipewire and connect real output device(s) as well as a virtual device which relays applications' sound to it. Two variants have been uploaded with the only difference being whether it's setup for a calfjackhost plugin or one from lsp-plugins.
+Simple-ish script which starts an equaliser (or whatever sound effects are available) under pipewire and connect real output device(s) as well as a virtual device which relays applications' sound to it. Two variants have been uploaded with the only difference being whether it's setup [for calfjackhost](https://github.com/d-wid/pipewire-eq-startup-script/blob/main/start-calf.sh) or [for one of the lsp-plugins](https://github.com/d-wid/pipewire-eq-startup-script/blob/main/start-lspeq.sh).
 
-While There are apps like qjackctl, Helvum or Catia which can be used instead I like the idea of being able to stick with Pavucontrol and not needing to use apps not provided by my distro's repository for this particular task.
+While There are apps like qjackctl, Helvum or Catia which can be used instead I like the idea of being able to stick with Pavucontrol and not needing to use extra applications and not needing to download something from outside my distro's default repository for this particular task.
 
 Depends on:
 - Jackd (or whatever part of JACK provides jack_connect and jack_lsp)
