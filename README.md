@@ -3,6 +3,8 @@ Simple-ish script which starts an equaliser (or whatever sound effects are avail
 
 While There are apps like qjackctl, Helvum or Catia which can be used instead I like the idea of being able to stick with Pavucontrol and not needing to use extra applications and not needing to download something from outside my distro's default repository for this particular task.
 
+Pulseeffects is perhaps the better solution for my personal needs, but right now my system doesn't play well with it when using Pipewire for audio, it seems.
+
 Depends on:
 - Jackd (or whatever part of JACK provides jack_connect and jack_lsp)
 - either calfjackhost or lsp-plugins (or whatever equivalent you use)
