@@ -30,7 +30,7 @@ p.s. lsp-pluins has actually got a 32-band EQ as well if you need that many band
 
 Unfortunately you don't have nearly as much flexibility with the Calf Equaliser plugins, but it's possible to just stack a few of them together as shown in the example above. Being far from an audio playback expert I asked around [here](https://old.reddit.com/r/oratory1990/comments/nnazlb/does_splitting_an_eq_preset_into_a_series_of/) and it seems to be fine.
 
-## The Script
+## The Script (Calf version)
 
 
 
