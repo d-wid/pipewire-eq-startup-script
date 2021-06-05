@@ -10,7 +10,7 @@ Depends on:
 - either calfjackhost or lsp-plugins (or whatever equivalent you use)
 - Pipewire
 
-## Usage
+## How to Use
 - Create and save a preset in calfjackhost or the LSP EQ plugin you want to use. Edit the values in the LSP plugin by double clicking on them, and in the Calf plugins by middle clicking the wheels.
 - Edit the script to correspond with your setup. There should be at most 6 or 7 lines that need changing (see examples below). To list JACK ports one can use:
 
