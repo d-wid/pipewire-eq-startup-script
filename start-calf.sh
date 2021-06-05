@@ -1,9 +1,9 @@
 #!/bin/sh
-CALFFIRSTIN1="Calf Studio Gear:Equalizer 8 Band In #1"		#Edit as needed.
-CALFFIRSTIN2="Calf Studio Gear:Equalizer 8 Band In #2"		#Edit as needed.
+CALFFIRSTIN1="Calf Studio Gear:Equalizer 12 Band In #1"		#Edit as needed.
+CALFFIRSTIN2="Calf Studio Gear:Equalizer 12 Band In #2"		#Edit as needed.
 
-CALFLASTOUT1="Calf Studio Gear:Equalizer 8 Band (2) Out #1"	#Edit as needed.
-CALFLASTOUT2="Calf Studio Gear:Equalizer 8 Band (2) Out #2"	#Edit as needed.
+CALFLASTOUT1="Calf Studio Gear:Equalizer 12 Band Out #1"	#Edit as needed.
+CALFLASTOUT2="Calf Studio Gear:Equalizer 12 Band Out #2"	#Edit as needed.
 
 ACTUALOUTPUTHARDWARE1="K3:playback_FL"						#Edit as needed.
 ACTUALOUTPUTHARDWARE2="K3:playback_FR"						#Edit as needed.
@@ -24,7 +24,7 @@ else
 fi
 
 #2 Start EQ (obviously you want to change the preset names/config files)
-calfjackhost eq8:preset-a ! eq12:preset1 !  eq8:preset2 &
+calfjackhost eq12:preset-1 &
 #lsp-plugins-para-equalizer-x16-stereo -c /tmp/preset.cfg &
 
 #3 Wait for Calf Jack ports to appear.
