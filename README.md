@@ -1,4 +1,4 @@
-# pipewire-eq-startup-script
+# Pipewire EQ Startup Script
 Simple-ish script which starts an equaliser (or whatever sound effects are available) under pipewire and connects it to real output device(s) as well as a virtual device used to relay applications' sound to it. Two variants have been uploaded with the only difference being whether it's setup [for calfjackhost](https://github.com/d-wid/pipewire-eq-startup-script/blob/main/start-calf.sh) or [for one of the lsp-plugins](https://github.com/d-wid/pipewire-eq-startup-script/blob/main/start-lspeq.sh).
 
 While There are apps like qjackctl, Helvum or Catia which can be used instead I like the idea of being able to stick with Pavucontrol without needing to use extra applications or download something from outside my distribution's default repository for this particular task.
@@ -28,7 +28,7 @@ p.s. lsp-pluins has actually got a 32-band EQ as well if you need that many band
 
     lsp-plugins-para-equalizer-x32-stereo
 
-Unfortunately you don't have nearly as much flexibility with the Calf Equaliser plugins, but it's possible to just stack a few of them together as shown in the example above. Being far from an audio playback expert I asked around [here](https://old.reddit.com/r/oratory1990/comments/nnazlb/does_splitting_an_eq_preset_into_a_series_of/) and it seems to be fine.
+Unfortunately you don't have nearly as much flexibility with the Calf Equaliser plugins, but it's possible to just stack a few of them together as shown in the example above. Being far from an audio playback expert I asked around [here](https://www.reddit.com/r/oratory1990/comments/nnazlb/does_splitting_an_eq_preset_into_a_series_of/) and it seems to be fine.
 
 ## The Script (Calf version)
 
