@@ -22,7 +22,7 @@ Two variants have been uploaded with the only difference being whether it's setu
     pw-jack jack_lsp
 
 - Don't forget to edit the line where calfjackhost or the lsp-plugins EQ is actually run so they correspond to your preset(s)
-- Run the script when you want to use EQ (or make it run right after every login). Logging out and back in or restarting Pipewire **NOT** required if you want to use EQ again after turning it off.
+- Run the script when you want to use EQ (or make it run right after every login). Logging out and back in or restarting Pipewire **NOT** required if you want to use EQ again after quitting it.
 - Use e.g. Pavucontrol to make apps output sound through $NODENAME as specified in the script (defaults to "EQ")
 
 ## Examples
