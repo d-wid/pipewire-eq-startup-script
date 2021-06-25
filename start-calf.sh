@@ -12,6 +12,7 @@ ACTUALOUTPUTHARDWARE2="K3:playback_FR"				#Edit as needed.
 NODENAME=EQ #Name of virtual device
 PWLINKORJACKCONNECT="pw-jack jack_connect" #Replacing "pw-jack jack_connect" with "pw-link" may be possible for Pipewire 0.3.26 and above
 CHECKEDPORT=$CALFFIRSTIN2
+CHECKEDPORT2=$ACTUALOUTPUTHARDWARE1
 
 VIRTUALMONITOR1="$NODENAME:monitor_FL"
 VIRTUALMONITOR2="$NODENAME:monitor_FR"
@@ -29,6 +30,12 @@ calfjackhost eq12:preset-1 &
 
 #3 Wait for Calf Jack ports to appear.
 while ! (pw-jack jack_lsp | grep -q "$CHECKEDPORT") > /dev/null
+do
+	sleep 0.1
+done
+
+#3.5 Wait for/Make sure of presence of Output Device ports
+while ! (pw-jack jack_lsp | grep -q "$CHECKEDPORT2") > /dev/null
 do
 	sleep 0.1
 done
