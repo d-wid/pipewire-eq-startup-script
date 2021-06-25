@@ -12,7 +12,7 @@ ACTUALOUTPUTHARDWARE2="K3:playback_FR"			#Edit as needed.
 NODENAME=EQ #Name of virtual device
 PWLINKORJACKCONNECT="pw-jack jack_connect" #Replacing "pw-jack jack_connect" with "pw-link" may be possible for Pipewire 0.3.26 and above
 CHECKEDPORT=$CALFFIRSTIN2
-CHECKEDPORT2=$ACTUALOUTPUTHARDWARE1
+CHECKEDPORT2=$ACTUALOUTPUTHARDWARE2
 
 VIRTUALMONITOR1="$NODENAME:monitor_FL"
 VIRTUALMONITOR2="$NODENAME:monitor_FR"
