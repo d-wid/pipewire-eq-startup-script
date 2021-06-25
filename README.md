@@ -15,6 +15,9 @@ Two variants have been uploaded with the only difference being whether it's setu
 - [calfjackhost](https://github.com/d-wid/pipewire-eq-startup-script/blob/main/start-calf.sh), or
 - [for one of the lsp-plugins](https://github.com/d-wid/pipewire-eq-startup-script/blob/main/start-lspeq.sh)
 
+## Changelog
+- 2021-06-25: For some reason my output device doesn't immediately appear to the Calf host when I start the script after login, so I've modified the script to wait for that as well before connecting all the ports.
+
 ## How to Use
 - Create and save a preset in calfjackhost or the LSP EQ plugin you want to use. Edit the values in the LSP plugin by double clicking on them, and in the Calf plugins by middle clicking the wheels.
 - Edit the script to correspond with your setup. There should be at most 6 or 7 lines that need changing (see examples below). To list JACK ports one can use:
