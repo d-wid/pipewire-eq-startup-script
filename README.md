@@ -21,7 +21,7 @@ Two variants have been uploaded with the only difference being whether it's setu
 
 ## How to Use
 - Create and save a preset in calfjackhost or the LSP EQ plugin you want to use. Edit the values in the LSP plugin by double clicking on them, and in the Calf plugins by middle clicking the wheels.
-- Edit the script to correspond with your setup. There should be at most 6 or 7 lines that need changing (see examples below). To list JACK ports one can use:
+- Edit the script to correspond with your setup. There should be at most 6 or 7 lines that need changing (see examples below) in addition to a couple at the top for those who use the new version meant for the binaries provided [here](https://sourceforge.net/projects/lsp-plugins/files/lsp-plugins). To list JACK ports one can use:
 
     pw-jack jack_lsp
 
