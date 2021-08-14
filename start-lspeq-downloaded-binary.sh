@@ -1,7 +1,7 @@
 #!/bin/sh
 
-LSP_FOLDER=/tmp/lsp-plugins-jack-1.1.30-Linux-x86_64 #Change to extracted folder containing README.txt, LICENSE.txt, CHANGELOG.txt, and usr
-VERSION=1.1.30 #change to the version you're using
+LSP_FOLDER=/tmp/lsp-plugins-jack-1.1.30-Linux-x86_64	#Change to extracted folder containing README.txt, LICENSE.txt, CHANGELOG.txt, and usr
+VERSION=1.1.30						#Change to the version you're using
 
 #Load library first
 LD_PRELOAD=$LSP_FOLDER/usr/local/lib/lsp-plugins/lsp-plugins-r3d-glx.so:$LSP_FOLDER/usr/local/lib/lsp-plugins/lsp-plugins-jack-core-$VERSION.so
