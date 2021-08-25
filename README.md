@@ -23,7 +23,7 @@ Two variants have been uploaded with the only difference being whether it's setu
 - Create and save a preset in calfjackhost or the LSP EQ plugin you want to use. Edit the values in the LSP plugin by double clicking on them, and in the Calf plugins by middle clicking the wheels.
 - Edit the script to correspond with your setup. There should be at most 6 or 7 lines that need changing (see examples below) in addition to a couple at the top for those who use the new version meant for the binaries provided [here](https://sourceforge.net/projects/lsp-plugins/files/lsp-plugins). To list JACK ports one can use:
 
-    pw-jack jack_lsp
+      pw-jack jack_lsp
 
 - Don't forget to edit the line where calfjackhost or the lsp-plugins EQ is actually run so they correspond to your preset(s)
 - Run the script when you want to use EQ (or make it run right after every login). Logging out and back in or restarting Pipewire **NOT** required if you want to use EQ again after quitting it.
