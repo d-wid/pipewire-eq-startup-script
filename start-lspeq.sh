@@ -21,9 +21,8 @@ VIRTUALMONITOR2="$NODENAME:monitor_FR"
 if (pw-jack jack_lsp | grep -q "$NODENAME"); then
     echo "nothing to be done."
 else
-#IF YOU USE AN OLD VERSION OF PIPEWIRE (e.g. 0.3.19) COMMENT OUT THE FIRST VARIANT BELOW AND UNCOMMENT THE SECOND
-	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=[ FL FR ] }
-#	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=FL,FR }
+	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=[ FL FR ] }	#COMMENT OUT if Pipewire is older than 0.3.25, and uncomment the line below
+#	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=FL,FR }		#UNCOMMENT IF you comment out the above
 fi
 
 #2 Start EQ (obviously you want to change the preset names/config files)
