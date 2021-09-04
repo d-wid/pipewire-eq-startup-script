@@ -8,7 +8,7 @@ Pulseeffects is perhaps the better solution for my personal needs, but right now
 Depends on:
 - Jackd (or whatever part of JACK provides jack_connect and jack_lsp)
 - either calfjackhost or lsp-plugins (or whatever equivalent you use)
-- Pipewire
+- Pipewire (I've personally tested it on Pipewire 0.3.19)
 
 ## Download
 Two variants have been uploaded with the only difference being whether it's setup for:
@@ -16,12 +16,13 @@ Two variants have been uploaded with the only difference being whether it's setu
 - [for one of the lsp-plugins](https://github.com/d-wid/pipewire-eq-startup-script/blob/main/start-lspeq.sh)
 
 ## Changelog
+- 2021-09-04: Added pw-cli's new way of creating virtual device as default while commenting out the old way.
 - 2021-08-14: Added a new version for those using lsp-plugins-jack downloaded from https://sourceforge.net/projects/lsp-plugins/files/lsp-plugins/
 - 2021-06-25: For some reason my output device doesn't immediately appear to the Calf host when I start the script after login, so I've modified the script to wait for that as well before connecting all the ports.
 
 ## How to Use
 - Create and save a preset in calfjackhost or the LSP EQ plugin you want to use. Edit the values in the LSP plugin by double clicking on them, and in the Calf plugins by middle clicking the wheels.
-- Edit the script to correspond with your setup. There should be at most 6 or 7 lines that need changing (see examples below) in addition to a couple at the top for those who use the new version meant for the binaries provided [here](https://sourceforge.net/projects/lsp-plugins/files/lsp-plugins). To list JACK ports one can use:
+- Edit the script to correspond with your setup. There should be at most 7 or 8 lines that need changing (see examples below) in addition to a couple at the top for those who use the new version meant for the binaries provided [here](https://sourceforge.net/projects/lsp-plugins/files/lsp-plugins). To list JACK ports one can use:
 
       pw-jack jack_lsp
 
@@ -66,7 +67,9 @@ Unfortunately you don't have nearly as much flexibility with the Calf Equaliser 
     if (pw-jack jack_lsp | grep -q "$NODENAME"); then
 	    echo "nothing to be done."
     else
-	    pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=FL,FR } 
+    #IF YOU USE AN OLD VERSION OF PIPEWIRE (e.g. 0.3.19) COMMENT OUT THE FIRST VARIANT BELOW AND UNCOMMENT THE SECOND)
+    	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=[ FL FR ] }
+    #	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=FL,FR }
     fi
     
     #2 Start EQ (obviously you want to change the preset names/config files)
@@ -129,9 +132,11 @@ Unfortunately you don't have nearly as much flexibility with the Calf Equaliser 
     if (pw-jack jack_lsp | grep -q "$NODENAME"); then
 	    echo "nothing to be done."
     else
-	    pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=FL,FR } 
+    #IF YOU USE AN OLD VERSION OF PIPEWIRE (e.g. 0.3.19) COMMENT OUT THE FIRST VARIANT BELOW AND UNCOMMENT THE SECOND)
+    	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=[ FL FR ] }
+    #	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=FL,FR }
     fi
-
+    
     #2 Start EQ (obviously you want to change the preset names/config files)
     #calfjackhost eq8:preset-a ! eq12:preset1 !  eq8:preset2 &
     $LSP_FOLDER/usr/local/bin/lsp-plugins-para-equalizer-x16-stereo -c /tmp/config.cfg &
