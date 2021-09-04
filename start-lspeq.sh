@@ -19,9 +19,11 @@ VIRTUALMONITOR2="$NODENAME:monitor_FR"
 
 #1 Create virtual device unless it"s already there.
 if (pw-jack jack_lsp | grep -q "$NODENAME"); then
-	echo "nothing to be done."
+    echo "nothing to be done."
 else
-	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=FL,FR } 
+#IF YOU USE AN OLD VERSION OF PIPEWIRE (e.g. 0.3.19) COMMENT OUT THE FIRST VARIANT BELOW AND UNCOMMENT THE SECOND
+	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=[ FL FR ] }
+#	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=FL,FR }
 fi
 
 #2 Start EQ (obviously you want to change the preset names/config files)
