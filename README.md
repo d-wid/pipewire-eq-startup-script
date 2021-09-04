@@ -67,7 +67,7 @@ Unfortunately you don't have nearly as much flexibility with the Calf Equaliser 
     if (pw-jack jack_lsp | grep -q "$NODENAME"); then
 	    echo "nothing to be done."
     else
-    #IF YOU USE AN OLD VERSION OF PIPEWIRE (e.g. 0.3.19) COMMENT OUT THE FIRST VARIANT BELOW AND UNCOMMENT THE SECOND)
+    #IF YOU USE AN OLD VERSION OF PIPEWIRE (e.g. 0.3.19) COMMENT OUT THE FIRST VARIANT BELOW AND UNCOMMENT THE SECOND
     	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=[ FL FR ] }
     #	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=FL,FR }
     fi
@@ -132,7 +132,7 @@ Unfortunately you don't have nearly as much flexibility with the Calf Equaliser 
     if (pw-jack jack_lsp | grep -q "$NODENAME"); then
 	    echo "nothing to be done."
     else
-    #IF YOU USE AN OLD VERSION OF PIPEWIRE (e.g. 0.3.19) COMMENT OUT THE FIRST VARIANT BELOW AND UNCOMMENT THE SECOND)
+    #IF YOU USE AN OLD VERSION OF PIPEWIRE (e.g. 0.3.19) COMMENT OUT THE FIRST VARIANT BELOW AND UNCOMMENT THE SECOND
     	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=[ FL FR ] }
     #	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=FL,FR }
     fi
