@@ -16,13 +16,13 @@ Two variants have been uploaded with the only difference being whether it's setu
 - [for one of the lsp-plugins](https://github.com/d-wid/pipewire-eq-startup-script/blob/main/start-lspeq.sh)
 
 ## Changelog
-- 2021-09-04: Added pw-cli's new way of creating virtual device as default while commenting out the old way.
-- 2021-08-14: Added a new version for those using lsp-plugins-jack downloaded from https://sourceforge.net/projects/lsp-plugins/files/lsp-plugins/
+- 2021-09-04: Added pw-cli's new way of creating virtual device as default while commenting out the old way. Thanks [@thulle](https://github.com/thulle)!
+- 2021-08-14: Added a new version for those using lsp-plugins-jack downloaded from https://sourceforge.net/projects/lsp-plug()ns/files/lsp-plugins/
 - 2021-06-25: For some reason my output device doesn't immediately appear to the Calf host when I start the script after login, so I've modified the script to wait for that as well before connecting all the ports.
 
 ## How to Use
 - Create and save a preset in calfjackhost or the LSP EQ plugin you want to use. Edit the values in the LSP plugin by double clicking on them, and in the Calf plugins by middle clicking the wheels.
-- Edit the script to correspond with your setup. There should be at most 7 or 8 lines that need changing (see examples below) in addition to a couple at the top for those who use the new version meant for the binaries provided [here](https://sourceforge.net/projects/lsp-plugins/files/lsp-plugins). To list JACK ports one can use:
+- Edit the script to correspond with your setup. There should be at most 7 to 9 lines that need changing (see examples below/pay attention to the lines in the script itself that is commented as needing some changes) in addition to a couple at the top for those who use the new version meant for the binaries provided [here](https://sourceforge.net/projects/lsp-plugins/files/lsp-plugins). To list JACK ports one can use:
 
       pw-jack jack_lsp
 
@@ -38,7 +38,7 @@ p.s. lsp-pluins has actually got a 32-band EQ as well if you need that many band
 
     lsp-plugins-para-equalizer-x32-stereo
 
-Unfortunately you don't have nearly as much flexibility with the Calf Equaliser plugins, but it's possible to just stack a few of them together as shown in the example above. Being far from an audio playback expert I asked around [here](https://www.reddit.com/r/oratory1990/comments/nnazlb/does_splitting_an_eq_preset_into_a_series_of/) and it seems to be fine.
+Unfortunately you don't have nearly as much flexibility if you use the Calf Equaliser plugins, but it's possible to just stack a few of them together as shown in the example above. Being far from an audio playback expert I asked around [here](https://www.reddit.com/r/oratory1990/comments/nnazlb/does_splitting_an_eq_preset_into_a_series_of/) and it seems to be fine.
 
 ## The Script (Calf version)
 
@@ -48,8 +48,8 @@ Unfortunately you don't have nearly as much flexibility with the Calf Equaliser 
     CALFFIRSTIN1="Calf Studio Gear:Equalizer 12 Band In #1"		#Edit as needed.
     CALFFIRSTIN2="Calf Studio Gear:Equalizer 12 Band In #2"		#Edit as needed.
     
-    CALFLASTOUT1="Calf Studio Gear:Equalizer 12 Band Out #1"	#Edit as needed.
-    CALFLASTOUT2="Calf Studio Gear:Equalizer 12 Band Out #2"	#Edit as needed.
+    CALFLASTOUT1="Calf Studio Gear:Equalizer 12 Band Out #1"		#Edit as needed.
+    CALFLASTOUT2="Calf Studio Gear:Equalizer 12 Band Out #2"		#Edit as needed.
     
     ACTUALOUTPUTHARDWARE1="K3:playback_FL"				#Edit as needed.
     ACTUALOUTPUTHARDWARE2="K3:playback_FR"				#Edit as needed.
@@ -67,9 +67,8 @@ Unfortunately you don't have nearly as much flexibility with the Calf Equaliser 
     if (pw-jack jack_lsp | grep -q "$NODENAME"); then
 	    echo "nothing to be done."
     else
-    #IF YOU USE AN OLD VERSION OF PIPEWIRE (e.g. 0.3.19) COMMENT OUT THE FIRST VARIANT BELOW AND UNCOMMENT THE SECOND
-    	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=[ FL FR ] }
-    #	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=FL,FR }
+    	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=[ FL FR ] }	#COMMENT OUT if Pipewire is older than 0.3.25, and uncomment the line below
+    #	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=FL,FR }		#UNCOMMENT IF you comment out the above
     fi
     
     #2 Start EQ (obviously you want to change the preset names/config files)
@@ -132,9 +131,8 @@ Unfortunately you don't have nearly as much flexibility with the Calf Equaliser 
     if (pw-jack jack_lsp | grep -q "$NODENAME"); then
 	    echo "nothing to be done."
     else
-    #IF YOU USE AN OLD VERSION OF PIPEWIRE (e.g. 0.3.19) COMMENT OUT THE FIRST VARIANT BELOW AND UNCOMMENT THE SECOND
-    	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=[ FL FR ] }
-    #	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=FL,FR }
+    	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=[ FL FR ] }	#COMMENT OUT if Pipewire is older than 0.3.25, and uncomment the line below
+    #	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=FL,FR }		#UNCOMMENT IF you comment out the above
     fi
     
     #2 Start EQ (obviously you want to change the preset names/config files)
