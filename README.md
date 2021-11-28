@@ -16,6 +16,7 @@ Two variants have been uploaded with the only difference being whether it's setu
 - [for one of the lsp-plugins](https://github.com/d-wid/pipewire-eq-startup-script/blob/main/start-lspeq.sh)
 
 ## Changelog
+- 2021-11-29: Prevents a second instance of EQ software from starting. Useful for me because my sound card often disconnects when I start the script for some reason as nowy I simply need to click on the script again after my soundcard reappears to try to connect it to the already-started EQ, without extra windows appearing.
 - 2021-09-04: Added pw-cli's new way of creating virtual device as default while commenting out the old way. Thanks [@thulle](https://github.com/thulle)!
 - 2021-08-14: Added a new version for those using lsp-plugins-jack downloaded from https://sourceforge.net/projects/lsp-plug()ns/files/lsp-plugins/
 - 2021-06-25: For some reason my output device doesn't immediately appear to the Calf host when I start the script after login, so I've modified the script to wait for that as well before connecting all the ports.
@@ -48,8 +49,8 @@ Unfortunately you don't have nearly as much flexibility if you use the Calf Equa
     CALFFIRSTIN1="Calf Studio Gear:Equalizer 12 Band In #1"		#Edit as needed.
     CALFFIRSTIN2="Calf Studio Gear:Equalizer 12 Band In #2"		#Edit as needed.
     
-    CALFLASTOUT1="Calf Studio Gear:Equalizer 12 Band Out #1"		#Edit as needed.
-    CALFLASTOUT2="Calf Studio Gear:Equalizer 12 Band Out #2"		#Edit as needed.
+    CALFLASTOUT1="Calf Studio Gear:Equalizer 12 Band Out #1"	#Edit as needed.
+    CALFLASTOUT2="Calf Studio Gear:Equalizer 12 Band Out #2"	#Edit as needed.
     
     ACTUALOUTPUTHARDWARE1="K3:playback_FL"				#Edit as needed.
     ACTUALOUTPUTHARDWARE2="K3:playback_FR"				#Edit as needed.
@@ -71,9 +72,13 @@ Unfortunately you don't have nearly as much flexibility if you use the Calf Equa
     #	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=FL,FR }		#UNCOMMENT IF you comment out the above. Only for Pipewire UP TO 0.3.25
     fi
     
-    #2 Start EQ (obviously you want to change the preset names/config files)
-    calfjackhost eq12:preset-1 &
-    #lsp-plugins-para-equalizer-x16-stereo -c /tmp/preset.cfg &
+    #2 Start Calf unless it's already running
+    if (pw-jack jack_lsp | grep -q "$CALFLASTOUT2"); then
+    	echo "nothing to be done."
+    else
+    	calfjackhost eq12:preset-1 &
+    	#lsp-plugins-para-equalizer-x16-stereo -c /tmp/preset.cfg &
+    fi
     
     #3 Wait for Calf Jack ports to appear.
     while ! (pw-jack jack_lsp | grep -q "$CHECKEDPORT") > /dev/null
@@ -135,9 +140,13 @@ Unfortunately you don't have nearly as much flexibility if you use the Calf Equa
     #	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=FL,FR }		#UNCOMMENT IF you comment out the above. Only for Pipewire UP TO 0.3.25
     fi
     
-    #2 Start EQ (obviously you want to change the preset names/config files)
-    #calfjackhost eq8:preset-a ! eq12:preset1 !  eq8:preset2 &
-    $LSP_FOLDER/usr/local/bin/lsp-plugins-para-equalizer-x16-stereo -c /tmp/config.cfg &
+    #2 Start EQ unless it's already running (obviously you want to change the preset names/config files)
+    if (pw-jack jack_lsp | grep -q "$CALFLASTOUT2"); then
+    	echo "nothing to be done."
+    else
+    	#calfjackhost eq8:preset-a ! eq12:preset1 !  eq8:preset2 &
+    	$LSP_FOLDER/usr/local/bin/lsp-plugins-para-equalizer-x16-stereo -c /tmp/config.cfg &
+    fi
 
     #3 Wait for Calf Jack ports to appear.
     while ! (pw-jack jack_lsp | grep -q "$CHECKEDPORT") > /dev/null
