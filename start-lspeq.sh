@@ -25,9 +25,13 @@ else
 #	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=FL,FR }		#UNCOMMENT IF you comment out the above. Only for Pipewire UP TO 0.3.25
 fi
 
-#2 Start EQ (obviously you want to change the preset names/config files)
-#calfjackhost eq8:preset-a ! eq12:preset1 !  eq8:preset2 &
-lsp-plugins-para-equalizer-x16-stereo -c /tmp/config.cfg &
+#2 Start EQ unless it's already running (obviously you want to change the preset names/config files)
+if (pw-jack jack_lsp | grep -q "$CALFLASTOUT2"); then
+	echo "nothing to be done."
+else
+#	calfjackhost eq8:preset-a ! eq12:preset1 !  eq8:preset2 &
+	lsp-plugins-para-equalizer-x16-stereo -c /tmp/config.cfg &
+fi
 
 #3 Wait for Calf Jack ports to appear.
 while ! (pw-jack jack_lsp | grep -q "$CHECKEDPORT") > /dev/null
