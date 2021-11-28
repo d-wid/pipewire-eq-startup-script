@@ -16,7 +16,7 @@ Two variants have been uploaded with the only difference being whether it's setu
 - [for one of the lsp-plugins](https://github.com/d-wid/pipewire-eq-startup-script/blob/main/start-lspeq.sh)
 
 ## Changelog
-- 2021-11-29: Prevents a second instance of EQ software from starting. Useful for me because my sound card often disconnects when I start the script for some reason as nowy I simply need to click on the script again after my soundcard reappears to try to connect it to the already-started EQ, without extra windows appearing.
+- 2021-11-29: Prevents a second instance of EQ software from starting. Useful for me because my sound card often disconnects when I start the script for some reason as now I simply need to click on the script again after my sound card reappears to try to connect it to the already-started EQ, without extra windows appearing.
 - 2021-09-04: Added pw-cli's new way of creating virtual device as default while commenting out the old way. Thanks [@thulle](https://github.com/thulle)!
 - 2021-08-14: Added a new version for those using lsp-plugins-jack downloaded from https://sourceforge.net/projects/lsp-plug()ns/files/lsp-plugins/
 - 2021-06-25: For some reason my output device doesn't immediately appear to the Calf host when I start the script after login, so I've modified the script to wait for that as well before connecting all the ports.
@@ -30,6 +30,7 @@ Two variants have been uploaded with the only difference being whether it's setu
 - Don't forget to edit the line where calfjackhost or the lsp-plugins EQ is actually run so they correspond to your preset(s)
 - Run the script when you want to use EQ (or make it run right after every login). Logging out and back in or restarting Pipewire **NOT** required if you want to use EQ again after quitting it.
 - Use e.g. Pavucontrol to make apps output sound through $NODENAME as specified in the script (defaults to "EQ")
+- If the sound card disconnects, simply run the script again after the sound card reappears to try to connect it to the already-started EQ. Extra windows of the EQ won't appear now unless you close the one already running.
 
 ## Examples
 ![Calf](https://github.com/d-wid/pipewire-eq-startup-script/blob/main/calf.png)
