@@ -56,7 +56,7 @@ Unfortunately you don't have nearly as much flexibility if you use the Calf Equa
     ACTUALOUTPUTHARDWARE1="K3:playback_FL"				#Edit as needed.
     ACTUALOUTPUTHARDWARE2="K3:playback_FR"				#Edit as needed.
     
-    #These probably need not be changed, though feel free to anyway.
+    #These probably need not be changed, though feel free to make changes anyway.
     NODENAME=EQ #Name of virtual device
     PWLINKORJACKCONNECT="pw-jack jack_connect" #Replacing "pw-jack jack_connect" with "pw-link" may be possible for Pipewire 0.3.26 and above
     CHECKEDPORT=$CALFFIRSTIN2
@@ -101,7 +101,9 @@ Unfortunately you don't have nearly as much flexibility if you use the Calf Equa
 
     #5 Please make all apps output sound through $NODENAME in e.g. Pavucontrol :)
     
-## The Script (version for lsp-plugins-jack downloaded from https://sourceforge.net/projects/lsp-plugins/files/lsp-plugins)
+## The Script
+### (version for lsp-plugins-jack downloaded from https://sourceforge.net/projects/lsp-plugins/files/lsp-plugins)
+#### Doesn't work with the newest version (It probably broke at version 1.2.0) unless changes to LD_PRELOAD and the executable location are also made
 
     #!/bin/sh
 
@@ -124,7 +126,7 @@ Unfortunately you don't have nearly as much flexibility if you use the Calf Equa
     ACTUALOUTPUTHARDWARE1="K3:playback_FL"			#Edit as needed.
     ACTUALOUTPUTHARDWARE2="K3:playback_FR"			#Edit as needed.
 
-    #These probably need not be changed, though feel free to anyway.
+    #These probably need not be changed, though feel free to make changes anyway.
     NODENAME=EQ #Name of virtual device
     PWLINKORJACKCONNECT="pw-jack jack_connect" #Replacing "pw-jack jack_connect" with "pw-link" may be possible for Pipewire 0.3.26 and above
     CHECKEDPORT=$CALFFIRSTIN2
