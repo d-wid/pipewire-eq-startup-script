@@ -15,7 +15,7 @@ Two variants have been uploaded with the only difference being whether it's setu
 - [for one of the lsp-plugins](https://github.com/d-wid/pipewire-eq-startup-script/blob/main/start-lspeq.sh)
 
 ## Changelog
-- 2025-11-21: Replaced commands that depended on JACK with Pipewire commands.
+- 2025-11-21: Replaced JACK commands in the script with Pipewire commands.
 - 2021-11-29: Prevents a second instance of EQ software from starting. Useful for me because my sound card often disconnects when I start the script for some reason as now I simply need to click on the script again after my sound card reappears to try to connect it to the already-started EQ, without extra windows appearing.
 - 2021-09-04: Added pw-cli's new way of creating virtual device as default while commenting out the old way. Thanks [@thulle](https://github.com/thulle)!
 - 2021-08-14: Added a new version for those using lsp-plugins-jack downloaded from https://sourceforge.net/projects/lsp-plug()ns/files/lsp-plugins/
