@@ -18,7 +18,7 @@ VIRTUALMONITOR1="$NODENAME:monitor_FL"
 VIRTUALMONITOR2="$NODENAME:monitor_FR"
 
 #1 Create virtual device unless it"s already there.
-if (pw-jack jack_lsp | grep -q "$NODENAME"); then
+if (pw-link -o | grep -q "$NODENAME"); then
     echo "nothing to be done."
 else
 	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=[ FL FR ] }	#COMMENT OUT if Pipewire is older than 0.3.25, and uncomment the line below
@@ -26,7 +26,7 @@ else
 fi
 
 #2 Start Calf unless it's already running
-if (pw-jack jack_lsp | grep -q "$CALFLASTOUT2"); then
+if (pw-link -o | grep -q "$CALFLASTOUT2"); then
 	echo "nothing to be done."
 else
 	calfjackhost eq12:preset-1 &
@@ -34,13 +34,13 @@ else
 fi
 
 #3 Wait for Calf Jack ports to appear.
-while ! (pw-jack jack_lsp | grep -q "$CHECKEDPORT") > /dev/null
+while ! (pw-link -oi | grep -q "$CHECKEDPORT") > /dev/null
 do
 	sleep 0.1
 done
 
 #3.5 Wait for/Make sure of presence of Output Device ports
-while ! (pw-jack jack_lsp | grep -q "$CHECKEDPORT2") > /dev/null
+while ! (pw-link -oi  | grep -q "$CHECKEDPORT2") > /dev/null
 do
 	sleep 0.1
 done
