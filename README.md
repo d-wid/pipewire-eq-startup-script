@@ -6,9 +6,8 @@ While There are apps like qjackctl, Helvum or Catia which can be used instead I 
 Pulseeffects is perhaps the better solution for my personal needs, but right now my system doesn't play well with it when using Pipewire for audio, it seems.
 
 Depends on:
-- Jackd (or whatever part of JACK provides jack_connect and jack_lsp)
 - either calfjackhost or lsp-plugins (or whatever equivalent you use)
-- Pipewire (I've personally tested it on Pipewire 0.3.19)
+- Pipewire (I've personally tested it on Pipewire 1.0.1)
 
 ## Download
 Two variants have been uploaded with the only difference being whether it's setup for:
@@ -16,6 +15,7 @@ Two variants have been uploaded with the only difference being whether it's setu
 - [for one of the lsp-plugins](https://github.com/d-wid/pipewire-eq-startup-script/blob/main/start-lspeq.sh)
 
 ## Changelog
+- 2025-11-21: Replaced commands that depended on JACK with Pipewire commands.
 - 2021-11-29: Prevents a second instance of EQ software from starting. Useful for me because my sound card often disconnects when I start the script for some reason as now I simply need to click on the script again after my sound card reappears to try to connect it to the already-started EQ, without extra windows appearing.
 - 2021-09-04: Added pw-cli's new way of creating virtual device as default while commenting out the old way. Thanks [@thulle](https://github.com/thulle)!
 - 2021-08-14: Added a new version for those using lsp-plugins-jack downloaded from https://sourceforge.net/projects/lsp-plug()ns/files/lsp-plugins/
@@ -23,10 +23,10 @@ Two variants have been uploaded with the only difference being whether it's setu
 
 ## How to Use
 - Create and save a preset in calfjackhost or the LSP EQ plugin you want to use. Edit the values in the LSP plugin by double clicking on them, and in the Calf plugins by middle clicking the wheels.
-- Edit the script to correspond with your setup. There should be at most 7 to 9 lines that need changing (see examples below/pay attention to the lines in the script itself that is commented as needing some changes) in addition to a couple at the top for those who use the new version meant for the binaries provided [here](https://sourceforge.net/projects/lsp-plugins/files/lsp-plugins). To list JACK ports one can use:
+- Edit the script to correspond with your setup. There should be at most 7 to 9 lines that need changing (see examples below/pay attention to the lines in the script itself that is commented as needing some changes) in addition to a couple at the top for those who use the new version meant for the binaries provided [here](https://sourceforge.net/projects/lsp-plugins/files/lsp-plugins). To list audio ports one can use:
 
-      pw-jack jack_lsp
-
+      pw-link -oi
+  
 - Don't forget to edit the line where calfjackhost or the lsp-plugins EQ is actually run so they correspond to your preset(s)
 - Run the script when you want to use EQ (or make it run right after every login). Logging out and back in or restarting Pipewire **NOT** required if you want to use EQ again after quitting it.
 - Use e.g. Pavucontrol to make apps output sound through $NODENAME as specified in the script (defaults to "EQ")
@@ -58,7 +58,7 @@ Unfortunately you don't have nearly as much flexibility if you use the Calf Equa
     
     #These probably need not be changed, though feel free to make changes anyway.
     NODENAME=EQ #Name of virtual device
-    PWLINKORJACKCONNECT="pw-jack jack_connect" #Replacing "pw-jack jack_connect" with "pw-link" may be possible for Pipewire 0.3.26 and above
+    PWLINKORJACKCONNECT="pw-link" #Replacing "pw-jack jack_connect" with "pw-link" may be possible for Pipewire 0.3.26 and above. Works as of Pipewire 1.0+
     CHECKEDPORT=$CALFFIRSTIN2
     CHECKEDPORT2=$ACTUALOUTPUTHARDWARE2
     
@@ -66,7 +66,7 @@ Unfortunately you don't have nearly as much flexibility if you use the Calf Equa
     VIRTUALMONITOR2="$NODENAME:monitor_FR"
     
     #1 Create virtual device unless it"s already there.
-    if (pw-jack jack_lsp | grep -q "$NODENAME"); then
+    if (pw-link -o | grep -q "$NODENAME"); then
 	    echo "nothing to be done."
     else
     	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=[ FL FR ] }	#COMMENT OUT if Pipewire is older than 0.3.25, and uncomment the line below
@@ -74,7 +74,7 @@ Unfortunately you don't have nearly as much flexibility if you use the Calf Equa
     fi
     
     #2 Start Calf unless it's already running
-    if (pw-jack jack_lsp | grep -q "$CALFLASTOUT2"); then
+    if (pw-link -o | grep -q "$CALFLASTOUT2"); then
     	echo "nothing to be done."
     else
     	calfjackhost eq12:preset-1 &
@@ -82,13 +82,13 @@ Unfortunately you don't have nearly as much flexibility if you use the Calf Equa
     fi
     
     #3 Wait for Calf Jack ports to appear.
-    while ! (pw-jack jack_lsp | grep -q "$CHECKEDPORT") > /dev/null
+    while ! (pw-link -oi | grep -q "$CHECKEDPORT") > /dev/null
     do
 	    sleep 0.1
     done
     
     #3.5 Wait for/Make sure of presence of Output Device ports
-	while ! (pw-jack jack_lsp | grep -q "$CHECKEDPORT2") > /dev/null
+	while ! (pw-link -oi  | grep -q "$CHECKEDPORT2") > /dev/null
 	do
 		sleep 0.1
 	done
@@ -128,7 +128,7 @@ Unfortunately you don't have nearly as much flexibility if you use the Calf Equa
 
     #These probably need not be changed, though feel free to make changes anyway.
     NODENAME=EQ #Name of virtual device
-    PWLINKORJACKCONNECT="pw-jack jack_connect" #Replacing "pw-jack jack_connect" with "pw-link" may be possible for Pipewire 0.3.26 and above
+    PWLINKORJACKCONNECT="pw-link" #Replacing "pw-jack jack_connect" with "pw-link" may be possible for Pipewire 0.3.26 and above. Works as of Pipewire 1.0+
     CHECKEDPORT=$CALFFIRSTIN2
     CHECKEDPORT2=$ACTUALOUTPUTHARDWARE2
 
@@ -136,7 +136,7 @@ Unfortunately you don't have nearly as much flexibility if you use the Calf Equa
     VIRTUALMONITOR2="$NODENAME:monitor_FR"
 
     #1 Create virtual device unless it"s already there.
-    if (pw-jack jack_lsp | grep -q "$NODENAME"); then
+   	if (pw-link -o | grep -q "$NODENAME"); then
 	    echo "nothing to be done."
     else
     	pw-cli create-node adapter { factory.name=support.null-audio-sink node.name="$NODENAME" media.class=Audio/Sink object.linger=1 audio.position=[ FL FR ] }	#COMMENT OUT if Pipewire is older than 0.3.25, and uncomment the line below
@@ -144,7 +144,7 @@ Unfortunately you don't have nearly as much flexibility if you use the Calf Equa
     fi
     
     #2 Start EQ unless it's already running (obviously you want to change the preset names/config files)
-    if (pw-jack jack_lsp | grep -q "$CALFLASTOUT2"); then
+    if (pw-link -o | grep -q "$CALFLASTOUT2"); then
     	echo "nothing to be done."
     else
     	#calfjackhost eq8:preset-a ! eq12:preset1 !  eq8:preset2 &
@@ -152,13 +152,13 @@ Unfortunately you don't have nearly as much flexibility if you use the Calf Equa
     fi
 
     #3 Wait for Calf Jack ports to appear.
-    while ! (pw-jack jack_lsp | grep -q "$CHECKEDPORT") > /dev/null
+    while ! (pw-link -oi | grep -q "$CHECKEDPORT") > /dev/null
     do
 	    sleep 0.1
     done
 
     #3.5 Wait for/Make sure of presence of Output Device ports
-    while ! (pw-jack jack_lsp | grep -q "$CHECKEDPORT2") > /dev/null
+    while ! (pw-link -oi  | grep -q "$CHECKEDPORT2") > /dev/null
     do
 	    sleep 0.1
     done
