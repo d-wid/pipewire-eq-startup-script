@@ -6,8 +6,8 @@ While There are apps like qjackctl, Helvum or Catia which can be used instead I 
 Pulseeffects is perhaps the better solution for my personal needs, but right now my system doesn't play well with it when using Pipewire for audio, it seems.
 
 Depends on:
-- either calfjackhost or lsp-plugins (or whatever equivalent you use)
 - Pipewire (I've personally tested it on Pipewire 1.0.1)
+- lsp-plugins or calfjackhost (or some other equivalent) running on pipewire-jack
 
 ## Download
 Two variants have been uploaded with the only difference being whether it's setup for:
